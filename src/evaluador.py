@@ -17,6 +17,8 @@ El evaluador:
 
 import sys
 from pathlib import Path
+import warnings
+warnings.filterwarnings("ignore", message="X does not have valid feature names")
 
 # Agregar el directorio src al path para importar modelo
 sys.path.insert(0, str(Path(__file__).parent))
@@ -161,7 +163,7 @@ def evaluar(num_rondas: int = 50):
         mostrar_ronda(ronda, jugada_ia, jugada_humano, resultado)
 
         # Registrar en el historial de la IA
-        ia.registrar_ronda(jugada_humano, jugada_ia)
+        ia.registrar_ronda(jugada_ia, jugada_humano)
 
         # Actualizar contadores
         if resultado == "victoria":
